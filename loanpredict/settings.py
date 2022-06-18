@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-#from pathlib import Path
-import django_heroku
 import os
 from pathlib import Path
 import django_heroku
@@ -19,9 +17,9 @@ import dotenv
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = Path(__file__).resolve().parent.parent
-# Static files (CSS, JavaScript, Images)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = Path(__file__).resolve().parent.parent
+
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
@@ -35,7 +33,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = 'django-insecure-i_s9x_n*-f2-frf@jjx3n-*q$hy_0d&bler8d6y^s8r4i@(6so'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['loan-pred-app.herokuapp.com', '127.0.0.1:8000', 'localhost']
 
@@ -164,12 +162,13 @@ USE_TZ = True
 
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
