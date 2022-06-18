@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path
+#from pathlib import Path
 import django_heroku
 import os
 import django_heroku
 import dotenv
-import dj_database_url
+#import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,7 +34,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = 'django-insecure-i_s9x_n*-f2-frf@jjx3n-*q$hy_0d&bler8d6y^s8r4i@(6so'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['loan-pred-app.herokuapp.com', '127.0.0.1:8000', 'localhost']
 
@@ -116,16 +116,16 @@ WSGI_APPLICATION = 'loanpredict.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode', None)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
