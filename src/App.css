@@ -1,0 +1,199 @@
+:root{
+  --bg-color:#1F1F1F;
+  --bg-color-variant:#1f1f1f6e;
+  --light-color-variant:#f5f5f5ce;
+  --primary-color:#0011d0;
+  --light-color:#F5F5F5;
+  --primary-color--variant:#0011d09c;
+}
+
+.App {
+  background:var(--bg-color);
+  padding:2% 5%;
+}
+
+/* -------------------------- nav ------------------------*/
+nav ul li{
+  display: inline;
+  list-style: none;
+  margin:0px 15px;
+}
+nav ul li a , .logo a  {
+  text-decoration: none;
+  color: var(--light-color);
+  font-size: 17px;
+  font-weight: 700;
+}
+nav ul li a:hover {
+  color: var(--light-color-variant);
+}
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo img {
+  max-width: 42px;
+}
+/* -------------------------- Home ------------------------*/
+.home section {
+  margin-top: 20px;
+  height: 80vh;
+  background-image: url('../public/header.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+section .button {
+  height: 55px;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--primary-color);
+  border: none;
+  background: var(--light-color-variant);
+  width: 20%;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+section .button:hover{
+  background: var(--light-color);
+}
+
+section p {
+  font-size: 45px;
+  font-weight: bold;
+  color: var(--light-color-variant);
+  background:var(--bg-color-variant);
+  padding: 3px;
+}
+/* -------------------------- Loan page ------------------------*/
+.form-box{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 3% 2%;
+}
+.loan-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background:var(--light-color-variant);
+  width: 64%;
+  align-items: center;
+  padding: 2%;
+}
+
+.paire-field{
+  display : flex;
+  flex-direction: row;
+  width:100%;
+  gap: 5px;
+  justify-content: space-between;
+}
+.formcontrol{
+  width: 50%;
+}
+.formcontrol-3{
+  width: 30%;
+}
+.slider{
+  width: 45%;
+
+}
+.sub-button{
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  font-size: 22px;
+  font-weight: 600;
+  background: var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+
+}
+.sub-button:hover{
+  background: var(--primary-color--variant);
+  color: var(--light-color-variant);
+}
+.succes span {
+  color: green;
+}
+.sorry span{
+  color: red
+}
+.succes p, .sorry p{
+  font-size: 25px;
+}
+
+/* -------------------------- App Info ------------------------*/
+.app-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background: var(--light-color-variant);
+  margin: 5%;
+  padding: 2%;
+
+}
+.info-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.content {
+  width: 70%;
+  margin-bottom: 5%;
+}
+.content img{
+  max-width: 100%;
+}
+.tools-used, .models{
+  width: 30%;
+}
+.content li{
+  margin-top: 5%;
+}
+.content h1 {
+  color: var(--primary-color);
+}
+
+/* -------------------------- Footer ------------------------*/
+.foot-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+}
+.foot-content a, .foot-content p{
+  color: var(--light-color);
+  text-decoration: none;
+}
+
+/* -------------------------- Media screen ------------------------*/
+@media screen and (max-width: 700px){
+
+  .loan-form{
+    gap: 7px;
+    width: 100%;
+    padding: 2%;
+  }
+  .content{
+    width: 100%;
+  }
+
+}
