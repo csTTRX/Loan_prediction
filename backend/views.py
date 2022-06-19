@@ -5,6 +5,9 @@ from rest_framework import status
 from serializers import LoanSerializer
 import pickle
 import pandas as pd
+from django.views import View
+from django.http import HttpResponse, HttpResponseNotFound
+import os
 
 model_path = 'ML_models/lr_model.sav'
 model = pickle.load(open(model_path, 'rb'))
@@ -53,4 +56,15 @@ def load_prediction(request):
             temp_df = pd.DataFrame(data = input, columns = columns, index =[1])
             result =  model.predict(temp_df)[0]
             return Response({'input': input, 'result':result})
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)   
+    
+class Assets(View):
+
+    def get(self, _request, filename):
+        path = os.path.join(os.path.dirname(__file__), 'static', filename)
+
+        if os.path.isfile(path):
+            with open(path, 'rb') as file:
+                return HttpResponse(file.read(), content_type='application/javascript')
+        else:
+            return HttpResponseNotFound()
