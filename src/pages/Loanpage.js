@@ -99,7 +99,7 @@ const Loanpage = () => {
     const Handlesubmit = async(e)=>{
         e.preventDefault()
         console.log(input_data)
-        let response = await fetch('http://127.0.0.1:8000/api/',{
+        let response = await fetch('https://loan-pred-app.herokuapp.com/api/',{
         method : "POST",
         mode : 'cors',
         headers:{
