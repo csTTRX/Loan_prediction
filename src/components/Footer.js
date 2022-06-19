@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
 import { SvgIcon } from '@mui/material';
 const Footer = () => {
   const Github = (
@@ -11,7 +10,7 @@ const Footer = () => {
     <div className='footer'>
       <div className='foot-content'>
         <p>Copyright ©  2022 by csttrx.</p>
-        <Link to='' >{Github}</Link>
+        <a href='https://github.com/csTTRX/Loan_prediction/tree/master' >{Github}</a>
       </div>
     </div>
   )

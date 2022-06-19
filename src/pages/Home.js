@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className='home'>
         <section>
-            <p> Get your chances with machine Learn app </p>
+            <p> See if you can get a loan from a bank with our machine App. </p>
             <Link className = 'button' to = '/make-prediction'> Loan Application</Link>
         </section>
     </div>

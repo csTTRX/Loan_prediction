@@ -7,30 +7,57 @@
   --primary-color--variant:#0011d09c;
 }
 
-.App {
+body {
   background:var(--bg-color);
   padding:2% 5%;
 }
 
 /* -------------------------- nav ------------------------*/
-nav ul li{
-  display: inline;
-  list-style: none;
-  margin:0px 15px;
-}
-nav ul li a , .logo a  {
-  text-decoration: none;
-  color: var(--light-color);
-  font-size: 17px;
-  font-weight: 700;
-}
-nav ul li a:hover {
-  color: var(--light-color-variant);
-}
 nav{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
+}
+.navigation-menu {
+  margin-left: auto;
+}
+.navigation-menu ul {
+  display: flex;
+  padding: 0;
+}
+
+.navigation-menu li{
+  list-style: none;
+  margin: 0 1rem;
+}
+.navigation-menu li a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  color: var(--light-color);
+}
+.hamburger {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
+}
+.hamburger:hover {
+  background-color: var(--light-color-variant);
+}
+
+nav ul li a:hover {
+  color: var(--light-color-variant);
 }
 
 .logo img {
@@ -40,7 +67,7 @@ nav{
 .home section {
   margin-top: 20px;
   height: 80vh;
-  /*background-image: url('../public/header.png');*/
+  background-image: url('../public/header.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; 
@@ -52,12 +79,11 @@ nav{
 
 section .button {
   height: 55px;
-  font-size: 25px;
   font-weight: 600;
   color: var(--primary-color);
   border: none;
   background: var(--light-color-variant);
-  width: 20%;
+  width: 40%;
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
@@ -83,34 +109,44 @@ section p {
   align-items: center;
   flex-direction: column;
   margin: 3% 2%;
+  position: relative;
+ 
 }
 .loan-form{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background:var(--light-color-variant);
+  background:var(--light-color);
   width: 64%;
   align-items: center;
   padding: 2%;
 }
 
-.paire-field{
-  display : flex;
+.select-paire, .input-paire {
+  display: flex;
   flex-direction: row;
-  width:100%;
-  gap: 5px;
+  width :100%;
   justify-content: space-between;
+  flex-wrap :wrap;
 }
-.formcontrol{
-  width: 50%;
+.select , .input {
+  display: flex;
+  flex-direction: column;
+  width :49%;
+  height : 55px
 }
-.formcontrol-3{
-  width: 30%;
-}
-.slider{
-  width: 45%;
 
+.select select , .input input {
+  height : 55px;
+  background:var(--light-color);
 }
+.select label , .input label {
+  margin-bottom : 5px
+}
+.tree{
+  width :30%;
+}
+
 .sub-button{
   margin-top: 20px;
   width: 100%;
@@ -195,5 +231,78 @@ section p {
   .content{
     width: 100%;
   }
+  section .button{
+    width: 80%;
+    margin: 5px;
+  }
+  
+  nav #icon{
+    position: relative;
+    display: block;
+    padding-right: 10px;
+}
+nav #icon img {
+    max-width: 40px;
+}
+}
+@media screen and (max-width: 400px){
 
+  .form-box{
+    margin : 0px;
+  }
+  .loan-form{
+    gap: 7px;
+    width: 100%;
+    padding: 2%;
+  }
+  .content{
+    width: 100%;
+  }
+  section .button{
+    width: 80%;
+    margin: 5px;
+  }
+
+  .select , .input {
+    display: flex;
+    flex-direction: column;
+    height : 55px
+  }
+
+  .tree{
+    width :100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .navigation-menu.expanded ul {
+    display: block;
+    position: absolute;
+    z-index : 1;
+  }
+
+  .navigation-menu ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-color: var(--light-color);
+    border-top: 1px solid black;
+  }
+  .navigation-menu li {
+    text-align: center;
+    margin: 0;
+  }
+  .navigation-menu li a {
+    color: black;
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+  .navigation-menu li:hover {
+    background-color: var(--light-color-variant);
+  }
 }

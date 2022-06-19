@@ -1,16 +1,20 @@
 import React from 'react'
 import train from '../train.png'
 import test from '../testplot.png'
-import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+
 const AppInof = () => {
   return (
+    <div>
+        <Header />
     <div className='app-info'>
         <div className='info-content'>
             <div className ='content app-description'>
                 <h1> App Description</h1>
                 <p> This application uses machine learning to predict such person may or may not have a bank loan.</p>
-                <p> The final model used for this app is Logistic Regresor.</p>
-                <p> You can see the source code on the github link <Link to="/" > here</Link></p>
+                <p> The final model used for this app is Radom Forest.</p>
+                <p> You can see the source code on the github link <a href='https://github.com/csTTRX/Loan_prediction/tree/master' >here</a></p>
             </div>
 
             <div className ='content tools-used' >
@@ -28,8 +32,8 @@ const AppInof = () => {
         <div className='info-content'>
             <div className ='content dataset' >
                 <h1> Dataset Used</h1>
-                <p> We have used the kaggle laon prediction dataset to train our models.<Link to="/" > Get Dataset</Link>.</p>
-                <p>We can see dataset visialization on <Link to="/" > this link </Link>.</p>
+                <p> We have used the kaggle laon prediction dataset to train our models.<a href="https://www.kaggle.com/datasets/altruistdelhite04/loan-prediction-problem-dataset" > Get Dataset</a>.</p>
+                <p>We can see dataset visialization on <a href="https://github.com/csTTRX/Loan_prediction/blob/master/ML_models/loan_prediction_training.ipynb" > this link </a>.</p>
                 <img src = {train} alt = 'trainset'></img>
                 <img src = {test} alt = 'testset'></img>
             </div>
@@ -46,6 +50,8 @@ const AppInof = () => {
             </div>
         </div>
         
+    </div>
+        <Footer/>
     </div>
   )
 }

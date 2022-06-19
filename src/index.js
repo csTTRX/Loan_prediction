@@ -14,10 +14,11 @@ root.render(
 <Router>
         <Routes>
             <Route path='/' element = {<App/>}> 
-                <Route path = 'make-prediction' element = {<Loanpage />}/>
-                <Route path = 'app-info' element = {<AppInof />}/>
                 <Route  index element  = {<Home />}></Route>
-           </Route> 
+            </Route>
+
+            <Route path = '/make-prediction' element = {<Loanpage />}/>
+            <Route path = '/app-info' element = {<AppInof />}/>
         </Routes>
 </Router>
 );

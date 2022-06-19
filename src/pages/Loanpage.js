@@ -1,28 +1,20 @@
 import React from 'react'
 import { useState } from 'react'
 import '../App.css';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Slider from '@mui/material/Slider';
-import Typography from '@mui/material/Typography';
-import axios from 'axios';
-
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Loanpage = () => {
-    const [gender, setSelectedGender] = useState('')
-    const [married, setSelectedMarried] = useState('')
-    const [education, setSelectedEducation] = useState('')
-    const [dependents, setSelectedDependents] = useState('')
-    const [self_employment, setSelectedSelfEmployment] = useState('')
-    const [property_area, setSelectedPropertyArea] = useState('')
+    const [gender, setSelectedGender] = useState(1)
+    const [married, setSelectedMarried] = useState(1)
+    const [education, setSelectedEducation] = useState(1)
+    const [dependents, setSelectedDependents] = useState(0)
+    const [self_employment, setSelectedSelfEmployment] = useState(1)
+    const [property_area, setSelectedPropertyArea] = useState(1)
     const [credit_history, setSelectedCreditHistory] = useState(0)
-    const [applicant_income, setApplicantIncome] = useState(500)
-    const [loan_amount, setLoanAmount]= useState(1000)
-    const [coapplicant_income, setCoapplicantIncome] = useState(1000)
+    const [applicant_income, setApplicantIncome] = useState(0)
+    const [loan_amount, setLoanAmount]= useState(100)
+    const [coapplicant_income, setCoapplicantIncome] = useState(0)
     const [loan_amount_term, setLoanAmountTerm] = useState(10)
     const [loan_result, setLoanResult] = useState([])
 
@@ -86,20 +78,11 @@ const Loanpage = () => {
      loan_amount_term,
      credit_history,
     }
-    const Handlesubmit1 = async (e)=>{
-        e.preventDefault()
-        const res = await axios({
-            method: 'post',
-            url:'http://127.0.0.1:8000/api/',
-            data: JSON.stringify(input_data),
-        })
-        console.log(res.data)
 
-    }
     const Handlesubmit = async(e)=>{
         e.preventDefault()
         console.log(input_data)
-        let response = await fetch('https://loan-pred-app.herokuapp.com/api/',{
+        let response = await fetch('http://127.0.0.1:8000/api/',{
         method : "POST",
         mode : 'cors',
         headers:{
@@ -116,169 +99,99 @@ const Loanpage = () => {
     }
 
     return (
-        <div className='form-box'>
+        <div> 
+            <Header></Header>
+            <div className='form-box'>
             <form action="" className='loan-form' onSubmit={Handlesubmit}>
                 <h1> Loan Application</h1>
-                <div className='paire-field'>
-                    <FormControl className = 'formcontrol'>
-                        <InputLabel id="gender">Gender</InputLabel>
-                        <Select
-                        name='gender_v'
-                        labelId="gender"
-                        id="gender_id"
-                        value={gender}
-                        label="Gender"
-                        onChange={handleChangeGender}
-                        >
-                        <MenuItem value={1}>MALE</MenuItem>
-                        <MenuItem value={0}>FEMALE</MenuItem>
-                        </Select>
-                    </FormControl>
 
-                    <FormControl className = 'formcontrol'>
-                        <InputLabel id="education">Education</InputLabel>
-                        <Select
-                        name = 'education_v'
-                        labelId="education"
-                        id="education_id"
-                        value={education}
-                        label="Education"
-                        onChange={handleChangeEducation}
-                        >
-                        <MenuItem value={1}>GRADUATED</MenuItem>
-                        <MenuItem value={0}>NOT GRADUATED</MenuItem>
-                        </Select>
-                    </FormControl>
+                <div className='select-paire'>
+                    
+                    <div className='select'>
+                        <label htmlFor="gender"> Gender</label>
+                        <select name="Gender" id="gender" onChange={handleChangeGender}>
+                            <option key ='g_0' value = {1}>MALE</option>
+                            <option key ='g_1' value = {0}>FEMALE</option>
+                        </select>
+                    </div>
+                    
+                    <div className='select'>
+                        <label htmlFor="maried"> Maried</label>
+                        <select name="Maried" id="maried" onChange={handleChangeMarried}>
+                            <option key ='m_0' value = {1}>YES</option>
+                            <option key ='m_1' value = {0}>NO</option>
+                        </select>
+                    </div>
+                    
                 </div>
-
-                <div className='paire-field'>
-                    <FormControl className = 'formcontrol'>
-                        <InputLabel id="dependents">Dependents</InputLabel>
-                        <Select
-                        name = 'dependents_v'
-                        labelId="dependents"
-                        id="dependents_id"
-                        value={dependents}
-                        label="Dependents"
-                        onChange={handleChangeDependents}
-                        >
-                        <MenuItem value={0}>0</MenuItem>
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3+</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                    <FormControl className = 'formcontrol'>
-                        <InputLabel id="married">Married</InputLabel>
-                        <Select
-                        name = 'married_v'
-                        labelId="married"
-                        id="married_id"
-                        value={married}
-                        label="Married"
-                        onChange={handleChangeMarried}
-                        >
-                        <MenuItem value={1}>YES</MenuItem>
-                        <MenuItem value={0}>NO</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-
-                <div className='paire-field'>
-                    <FormControl className = 'formcontrol-3'>
-                        <InputLabel id="employment">Self Employed</InputLabel>
-                        <Select
-                        name = 'employment_v'
-                        labelId="employment"
-                        id="gender_id"
-                        value={self_employment}
-                        label="Self Employed"
-                        onChange={handleChangeEmployment}
-                        >
-                        <MenuItem value={1}>YES</MenuItem>
-                        <MenuItem value={0}>NO</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                    <FormControl className = 'formcontrol-3'>
-                        <InputLabel id="property">Property Area</InputLabel>
-                        <Select
-                        name = 'property_v'
-                        labelId="property"
-                        id="property_id"
-                        value={property_area}
-                        label="Property Area"
-                        onChange={handleChangePropertyArea}
-                        >
-                        <MenuItem value={0}>RURAL</MenuItem>
-                        <MenuItem value={1}>SEMIRURAL</MenuItem>
-                        <MenuItem value={2}>URBAN</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                    <FormControl className = 'formcontrol-3'>
-                        <InputLabel id="credit">Credit History</InputLabel>
-                        <Select
-                        name = 'credit_v'
-                        labelId="credit"
-                        id="credit_id"
-                        value={credit_history}
-                        label="Credit History"
-                        onChange={handleChangeCreditHistory}
-                        >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={0}>0</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-
-                <div className='paire-field'>
-                    <div className = 'slider'>
-                        <Typography id="applicant_income_id" gutterBottom>
-                            Applicant Income
-                        </Typography>
-                        <Slider name='appl_in' defaultValue={500} step={100} marks min={0} max={10000} 
-                        valueLabelDisplay="auto" 
-                        aria-labelledby ='applicant_income_id'
-                        onChange={handleApplicantIncome}
-                        />
+                <div className='select-paire'>
+                    <div className='select' >
+                        <label htmlFor="education_id">Education</label>
+                        <select name="Education" id="education_id" onChange={handleChangeEducation}>
+                            <option key ='e_0' value = {1}>GRADUATED</option>
+                            <option key ='e_1' value = {0}>NOT GRADUATED</option>
+                        </select>
                     </div>
 
-                    <div className = 'slider'>
-                        <Typography id="coapplicant_income_id" gutterBottom>
-                            Coapplicant Income
-                        </Typography>
-                        <Slider name = 'coappl_in' defaultValue={500} step={100} marks min={0} max={10000} 
-                        valueLabelDisplay="auto" 
-                        aria-labelledby='coapplicant_income_id'
-                        onChange={handleCoapplicantIncome}
-                        />
+                    <div className='select' >
+                        <label htmlFor="dependents_id">Dependents</label>
+                        <select name="Dependents" id="Dependents_id" onChange={handleChangeDependents}>
+                            <option key ='d_0' value = {0}>0</option>
+                            <option key ='d_1' value = {1}>1</option>
+                            <option key ='d_2' value = {2}>2</option>
+                            <option key ='d_3' value = {3}>3+</option>
+                        </select> 
                     </div>
+                            
                 </div>
+                <div className='select-paire'>
+                    <div className='select tree'>
+                        <label htmlFor="credit_history_id"> Credit History</label>
+                        <select name="credit_history" id="credit_history_id" onChange={handleChangeCreditHistory}>
+                            <option key ='his_0' value = {0}>0</option>
+                            <option key ='his_1' value = {1}>1</option>
+                        </select>
+                    </div>
+
+                    <div className='select tree'>
+                        <label htmlFor="Property_Area_id"> Property Area</label>
+                        <select name="Property_Area" id="Property_Area_id" onChange={handleChangePropertyArea}>
+                            <option key ='pa_0' value = {0}>RURAL</option>
+                            <option key ='pa_1' value = {1}>SEMIRURAL</option>
+                            <option key ='pa_2' value = {2}>URBAN</option>
+                        </select>
+                    </div>
+                    <div className='select tree'>
+                        <label htmlFor="Self_Employment_id"> Self Employment</label>
+                        <select name="Self_Employment" id="Self_Employment_id" onChange={handleChangeEmployment}>
+                            <option key ='se_0' value = {1}>YES</option>
+                            <option key ='se_1' value = {0}>NO</option>
+                        </select>
+                    </div>
                 
+                </div>
 
-                <div className='paire-field'>
-                    <div className = 'slider'>
-                        <Typography id="loan_amount_id" gutterBottom>
-                            Laon amount
-                        </Typography>
-                        <Slider name='loan_m' defaultValue={500} step={100} marks min={100} max={10000} 
-                        valueLabelDisplay="auto"
-                        aria-labelledby='loan_amount_id'
-                        onChange={handleLoanAmount}
-                        />
+                <div className='input-paire'>
+                    <div className='input'>
+                        <label htmlFor="applicant_income">Applicant Income</label>
+                        <input type="number" name ="applicant_income" id = "applicant_income" onChange={handleApplicantIncome} min ='0' placeholder = '0' />
                     </div>
 
-                    <div className = 'slider'>
-                        <Typography id="loan_amount_term_id" gutterBottom>
-                            Laon Amount Term
-                        </Typography>
-                        <Slider name='loan_term' defaultValue={10} step={1} marks min={10} max={4000} 
-                        valueLabelDisplay="auto"
-                        aria-labelledby='loan_amount_term_id'
-                        onChange={handleLoanAmountTerm}
-                        />
+                    <div className='input'>
+                        <label htmlFor="coapplicant_income">Applicant Income</label>
+                        <input type="number" name ="coapplicant_income" id = "coapplicant_income"  onChange={handleCoapplicantIncome} min ='0' placeholder = '0' />
+                    </div>
+                </div>
+
+                <div className='input-paire'>
+                    <div className='input'>
+                        <label htmlFor="loan_amount">Loan Ammount(100€ - 10000€)</label>
+                        <input type="number" name ="loan_amount" id = "loan_amount" onChange={handleLoanAmount} min ='100' max ='10000' placeholder = '100' />
+                    </div>
+
+                    <div className='input'>
+                        <label htmlFor="loan_amount_term">Loan Amount Term (days)</label>
+                        <input type="number" name ="loan_amount_term" id = "loan_amount_term" onChange={handleLoanAmountTerm} min = '10' max ='4000' placeholder = '10'/>
                     </div>
                 </div>
                 <button type='submit' className='sub-button'>MAKE PREDICTION</button>
@@ -289,6 +202,8 @@ const Loanpage = () => {
                 </div>
             </form>
         </div>
+        <Footer/>
+    </div>
     )
     }
 
