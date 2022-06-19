@@ -90,7 +90,7 @@ const Loanpage = () => {
         e.preventDefault()
         const res = await axios({
             method: 'post',
-            url:'http://127.0.0.1:8000/loan_predict/',
+            url:'http://127.0.0.1:8000/api/',
             data: JSON.stringify(input_data),
         })
         console.log(res.data)
@@ -99,7 +99,7 @@ const Loanpage = () => {
     const Handlesubmit = async(e)=>{
         e.preventDefault()
         console.log(input_data)
-        let response = await fetch('http://127.0.0.1:8000/loan_predict/',{
+        let response = await fetch('http://127.0.0.1:8000/api/',{
         method : "POST",
         mode : 'cors',
         headers:{
