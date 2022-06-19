@@ -67,7 +67,6 @@ nav ul li a:hover {
 .home section {
   margin-top: 20px;
   height: 80vh;
-  background-image: url('../public/header.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; 
@@ -75,6 +74,10 @@ nav ul li a:hover {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  background: #232526;
+  background: -webkit-linear-gradient(to left, #414345, #232526);  
+  background: linear-gradient(to left, #414345, #232526); 
+
 }
 
 section .button {
@@ -97,7 +100,7 @@ section .button:hover{
 }
 
 section p {
-  font-size: 45px;
+  font-size: 32px;
   font-weight: bold;
   color: var(--light-color-variant);
   background:var(--bg-color-variant);
@@ -108,7 +111,7 @@ section p {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 3% 2%;
+  margin: 5% 2%;
   position: relative;
  
 }
@@ -221,7 +224,7 @@ section p {
 }
 
 /* -------------------------- Media screen ------------------------*/
-@media screen and (max-width: 700px){
+@media screen and (max-width: 768px){
 
   .loan-form{
     gap: 7px;
@@ -244,11 +247,43 @@ section p {
 nav #icon img {
     max-width: 40px;
 }
+
+.hamburger {
+  display: block;
+}
+.navigation-menu.expanded ul {
+  display: block;
+  position: absolute;
+  z-index : 1;
+}
+.navigation-menu ul {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 77px);
+  background-color: var(--light-color);
+  border-top: 1px solid black;
+}
+.navigation-menu li {
+  text-align: center;
+  margin: 0;
+}
+.navigation-menu li a {
+  color: black;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+.navigation-menu li:hover {
+  background-color: var(--light-color-variant);
+}
+
 }
 @media screen and (max-width: 400px){
 
   .form-box{
-    margin : 0px;
+    margin: 15% 0%;
   }
   .loan-form{
     gap: 7px;
@@ -271,38 +306,5 @@ nav #icon img {
 
   .tree{
     width :100%;
-  }
-}
-@media screen and (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-  .navigation-menu.expanded ul {
-    display: block;
-    position: absolute;
-    z-index : 1;
-  }
-
-  .navigation-menu ul {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 77px);
-    background-color: var(--light-color);
-    border-top: 1px solid black;
-  }
-  .navigation-menu li {
-    text-align: center;
-    margin: 0;
-  }
-  .navigation-menu li a {
-    color: black;
-    width: 100%;
-    padding: 1.5rem 0;
-  }
-  .navigation-menu li:hover {
-    background-color: var(--light-color-variant);
   }
 }
