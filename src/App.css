@@ -67,7 +67,7 @@ nav ul li a:hover {
 .home section {
   margin-top: 20px;
   height: 80vh;
-  background-image: url('../public/header.png');
+  background-image: url('header.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; 
