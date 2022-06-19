@@ -1,4 +1,5 @@
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework import status
 from serializers import LoanSerializer
@@ -9,6 +10,7 @@ model_path = 'ML_models/lr_model.sav'
 model = pickle.load(open(model_path, 'rb'))
 result = ''
 
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def load_prediction(request):
     if request.method == 'GET':

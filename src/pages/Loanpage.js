@@ -7,7 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
-
+import axios from 'axios';
+import { async } from 'q';
 const Loanpage = () => {
 
     const [gender, setSelectedGender] = useState('')
@@ -83,6 +84,20 @@ const Loanpage = () => {
      loan_amount_term,
      credit_history,
     }
+    const Handlesubmit1 = async (e)=>{
+        e.preventDefault()
+        const res = await axios({
+            method: 'post',
+            url:'http://127.0.0.1:8000/loan_predict/',
+            data: JSON.stringify(input_data),
+            xsrfCookieName: 'csrftoken',
+            xsrfHeaderName: 'X-CSRFToken',
+            withCredentials: true,
+            headers : {'Content-Type':'application/json', 'X-CSRFToken': 'csrftoken'}
+        })
+        console.log(res.data)
+
+    }
     const Handlesubmit = async(e)=>{
         e.preventDefault()
         console.log(input_data)
@@ -90,7 +105,8 @@ const Loanpage = () => {
         method : "POST",
         mode : 'cors',
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'X-CSRFToken': 'csrftoken'
         },
         body:JSON.stringify(input_data)
         })

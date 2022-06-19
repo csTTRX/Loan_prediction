@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-i_s9x_n*-f2-frf@jjx3n-*q$hy_0d&bler8d6y^s8r4i@(6so
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['loan-pred-app.herokuapp.com', '127.0.0.1:8000', 'localhost']
+ALLOWED_HOSTS = ['loan-pred-app.herokuapp.com', '127.0.0.1:8000', 'localhost',"127.0.0.1"]
 
 
 # Application definition
@@ -79,17 +79,17 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
 ROOT_URLCONF = 'loanpredict.urls'
 
 TEMPLATES = [
@@ -114,16 +114,16 @@ WSGI_APPLICATION = 'loanpredict.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode', None)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -144,6 +144,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_HEADER_NAME  = "X-CSRFToken"
+CSRF_COOKIE_NAME = "csrftoken"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -177,5 +179,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode'] 
+#django_heroku.settings(locals())
+#del DATABASES['default']['OPTIONS']['sslmode']
