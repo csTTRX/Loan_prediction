@@ -178,7 +178,7 @@ const Loanpage = () => {
                     </div>
 
                     <div className='input'>
-                        <label htmlFor="coapplicant_income">Applicant Income</label>
+                        <label htmlFor="coapplicant_income">Coapplicant Income</label>
                         <input type="number" name ="coapplicant_income" id = "coapplicant_income"  onChange={handleCoapplicantIncome} min ='0' placeholder = '0' />
                     </div>
                 </div>
